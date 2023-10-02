@@ -14,8 +14,8 @@ class User(db.Model):
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='user', lazy=True)
 
-    # Dog House Model
 class DogHouse(db.Model):
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(200), nullable=False)
@@ -24,8 +24,8 @@ class DogHouse(db.Model):
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='dog_house', lazy=True)
 
-# Review Model (Reciprocal Many-to-Many)
 class Review(db.Model):
+
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     content = db.Column(db.Text, nullable=True)
