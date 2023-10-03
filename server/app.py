@@ -71,15 +71,22 @@ def signup():
 @app.route('/api/login', methods=['POST'])
 def login():
     data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid JSON data'})
+
     email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({'error': 'Invalid credentials'})
+
     user = User.query.filter(User.email == email).first()
 
-    password = data.get('password')
-    if user.authenticate(password):
-        session['user_id'] = user.id
-        return jsonify({'message': 'Logged in successfully!'})
-    else:
-        return jsonify({'error': 'Invalid credentials!'})
+    if user is None or not user.authenticate(password):
+        return jsonify({'error': 'Invalid credentials'})
+
+    session['user_id'] = user.id
+    return jsonify({'message': 'Logged in successfully!'})
     
 # Check session for auto-login
 @app.route('/api/check_session')
@@ -91,9 +98,11 @@ def check_session():
         return '', 204
     
 # Clearing the session after logging out
-@app.route('/api/logout')
-def clear_session():
-    session['user_id'] = None
+@app.route('/api/logout', methods=['DELETE'])
+def logout():
+    # Clear the user_id session variable to log the user out
+    session.pop('user_id', None)
+    return jsonify({'message': 'Logged out successfully'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, port=5555)
