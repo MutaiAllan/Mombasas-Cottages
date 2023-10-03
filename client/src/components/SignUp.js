@@ -9,7 +9,7 @@ function SignUp({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/signup", {
+        fetch("/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ function SignUp({ setUser }) {
               autoComplete="off"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
+            /><br></br>
 
             <label htmlFor="email">Email</label>
             <input
@@ -48,7 +48,7 @@ function SignUp({ setUser }) {
               autoComplete="off"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
+            /><br></br>
 
             <label htmlFor="password">Password</label>
             <input
@@ -57,7 +57,7 @@ function SignUp({ setUser }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
-            />
+            /><br></br>
 
             <label htmlFor="password">Password Confirmation</label>
             <input
@@ -66,7 +66,7 @@ function SignUp({ setUser }) {
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
               autoComplete="current-password"
-            />
+            /><br></br>
             <button type="submit">Sign Up</button>
           </form>
         </div>

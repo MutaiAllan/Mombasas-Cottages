@@ -1,7 +1,8 @@
 import React, { useState} from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
-
+import SignUp from "./components/SignUp";
+import Login from "./components/LogIn";
 
 function App() {
 
