@@ -51,11 +51,15 @@ def get_dog_house(dog_house_id):
 def signup():
     data = request.get_json()
     # form = UserForm(request.form)
+
     if data:
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
         new_user = User(
-            username= data.get('username'),
-            email=data.get('email'),
-            password_hash=data.get('password')
+            username= username,
+            email=email,
+            password_hash=password
         )
         db.session.add(new_user)
         db.session.commit()
@@ -66,11 +70,11 @@ def signup():
 #Route for Logging in
 @app.route('/api/login', methods=['POST'])
 def login():
-    form = UserForm(request.form)
-    email = form.email.data
+    data = request.get_json()
+    email = data.get('email')
     user = User.query.filter(User.email == email).first()
 
-    password = form.password.data
+    password = data.get('password')
     if user.authenticate(password):
         session['user_id'] = user.id
         return jsonify({'message': 'Logged in successfully!'})
