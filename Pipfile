@@ -16,6 +16,7 @@ flask-bcrypt = "*"
 psycopg2 = "*"
 flask-wtf = "*"
 email-validator = "*"
+faker = "*"
 
 [dev-packages]
 
