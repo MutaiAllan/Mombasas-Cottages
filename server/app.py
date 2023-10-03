@@ -1,21 +1,11 @@
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, make_response, request, session
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from flask_bcrypt import Bcrypt
+from flask_sqlalchemy import SQLAlchemy
 
-from models import db, DogHouse, DogHouseForm
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dog_house_db_user:IpxSKYa5XsKJnHSqlrAnXPAvBeHPN0L4@dpg-ckdh6tkiibqc73cm9ot0-a.oregon-postgres.render.com/dog_house_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.jsonify_prettify = False  # Adjusted from app.json.compact
-
-# Initialize the SQLAlchemy instance
-app.json.compact = False
-
-migrate = Migrate(app, db)
-db.init_app(app)
-
-api = Api(app)
+from models import DogHouse, DogHouseForm, UserForm, User
+from config import app, db, api
 
 # Example route to get a list of dog houses
 @app.route('/api/dog_houses', methods=['GET'])
@@ -47,5 +37,50 @@ def get_dog_house(dog_house_id):
 
 # Add routes for other CRUD actions (update and delete) and for other models (User and Review)
 
+# Route for signing up
+@app.route('/api/signup', methods=['POST'])
+def signup():
+    #json_data = request.get_json()
+    form = UserForm(request.form)
+    if form.validate():
+        new_user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password_hash=form.password.data
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({'message': 'User created successfully'})
+    else:
+        return jsonify({'error': 'Invalid data'})
+    
+#Route for Logging in
+@app.route('/api/login', methods=['POST'])
+def login():
+    form = UserForm(request.form)
+    email = form.email.data
+    user = User.query.filter(User.email == email).first()
+
+    password = form.password.data
+    if user.authenticate(password):
+        session['user_id'] = user.id
+        return jsonify({'message': 'Logged in successfully!'})
+    else:
+        return jsonify({'error': 'Invalid credentials!'})
+    
+# Check session for auto-login
+@app.route('/api/check_session')
+def check_session():
+    user = User.query.filter(User.id == session.get('user_id')).first()
+    if user:
+        return jsonify(user.to_dict())
+    else:
+        return '', 204
+    
+# Clearing the session after logging out
+@app.route('/api/logout')
+def clear_session():
+    session['user_id'] = None
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5555)
