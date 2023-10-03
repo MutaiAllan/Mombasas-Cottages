@@ -3,9 +3,10 @@ from sqlalchemy_serializer import SerializerMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, validators
 from sqlalchemy.ext.hybrid import hybrid_property
+#Added config.py to prevent circular imports
+from config import db, bcrypt
 
-
-db = SQLAlchemy()
+#db = SQLAlchemy()
 
 class User(db.Model, SerializerMixin):
 
