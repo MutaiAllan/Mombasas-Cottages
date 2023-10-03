@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
-from models import DogHouse, DogHouseForm, UserForm, User
+from models import DogHouse, User
 from config import app, db, api
 
 # Example route to get a list of dog houses
@@ -14,18 +14,26 @@ def get_dog_houses():
     dog_houses_data = [dog_house.serialize() for dog_house in dog_houses]
     return jsonify(dog_houses_data)
 
-# Example route to create a new dog house
+# Route to create a new dog house
 @app.route('/api/dog_houses', methods=['POST'])
 def create_dog_house():
-    if request.method == "POST":
-        form = DogHouseForm()
-        if form.validate_on_submit():
-            new_dog_house = DogHouse(name=form.name, location=form.location, description=form.description)
+    data = request.get_json()  # Parse JSON data from the request
+    if data:
+        # Extract data from the JSON object
+        name = data.get('name')
+        location = data.get('location')
+        description = data.get('description')
+
+        if name and location:
+            new_dog_house = DogHouse(name=name, location=location, description=description)
             db.session.add(new_dog_house)
             db.session.commit()
             return jsonify({'message': 'Dog house created successfully'})
         else:
-            return jsonify({'error': 'Invalid data'})
+            return jsonify({'error': 'Name and location are required fields'})
+    else:
+        return jsonify({'error': 'Invalid JSON data'})
+
 
 # Example route to get a specific dog house by ID
 @app.route('/api/dog_houses/<int:dog_house_id>', methods=['GET'])
@@ -41,13 +49,13 @@ def get_dog_house(dog_house_id):
 # Route for signing up
 @app.route('/api/signup', methods=['POST'])
 def signup():
-    #json_data = request.get_json()
-    form = UserForm()
-    if form.validate_on_submit():
+    data = request.get_json()
+    # form = UserForm(request.form)
+    if data:
         new_user = User(
-            username=form.username.data,
-            email=form.email.data,
-            password_hash=form.password.data
+            username= data.get('username'),
+            email=data.get('email'),
+            password_hash=data.get('password')
         )
         db.session.add(new_user)
         db.session.commit()

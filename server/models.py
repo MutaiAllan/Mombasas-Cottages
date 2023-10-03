@@ -42,6 +42,7 @@ class DogHouse(db.Model, SerializerMixin):
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
+    # image = db.Column(db.String)
     
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='dog_house', lazy=True)
@@ -78,16 +79,16 @@ class Review(db.Model, SerializerMixin):
             'dog_house_id': self.dog_house_id
         }
 
-class UserForm(FlaskForm):
-    username = StringField('Username', [validators.Length(min=4, max=80), validators.DataRequired()])
-    email = StringField('Email', [validators.Email(), validators.DataRequired()])
-    password = StringField('Password', [validators.Length(min=6), validators.DataRequired()])
+# class UserForm(FlaskForm):
+#     username = StringField('Username', [validators.Length(min=4, max=80), validators.DataRequired()])
+#     email = StringField('Email', [validators.Email(), validators.DataRequired()])
+#     password = StringField('Password', [validators.Length(min=6), validators.DataRequired()])
 
-class DogHouseForm(FlaskForm):
-    name = StringField('Name', [validators.Length(min=2, max=100), validators.DataRequired()])
-    location = StringField('Location', [validators.Length(min=1, max=200), validators.DataRequired()])
-    description = TextAreaField('Description', [validators.Length(max=200)])
+# class DogHouseForm(FlaskForm):
+#     name = StringField('Name', [validators.Length(min=2, max=100), validators.DataRequired()])
+#     location = StringField('Location', [validators.Length(min=1, max=200), validators.DataRequired()])
+#     description = TextAreaField('Description', [validators.Length(max=200)])
 
-class ReviewForm(FlaskForm):
-    rating = IntegerField('Rating', [validators.NumberRange(min=1, max=5), validators.DataRequired()])
-    content = TextAreaField('Content', [validators.Length(max=1000)])
+# class ReviewForm(FlaskForm):
+#     rating = IntegerField('Rating', [validators.NumberRange(min=1, max=5), validators.DataRequired()])
+#     content = TextAreaField('Content', [validators.Length(max=1000)])
