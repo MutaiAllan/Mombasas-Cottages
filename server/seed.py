@@ -33,7 +33,7 @@ def seed_database():
         DogHouse.query.delete()
         
         for _ in range(5):
-            user = User(username=fake.user_name(), email=fake.email(), password=fake.password())
+            user = User(username=fake.user_name(), email=fake.email(), password_hash=fake.password())
             db.session.add(user)
 
         for _ in range(10):
@@ -59,6 +59,9 @@ def seed_database():
             
             review = Review(rating=rating, content=review_content, user=random_user, dog_house=random_dog_house)
             db.session.add(review)
+
+        mutai = User(username='Mutai', email='allankiprop@gmail.com', password_hash='123456')
+        db.session.add(mutai)
 
         db.session.commit()
         print("Database seeded successfully!")
