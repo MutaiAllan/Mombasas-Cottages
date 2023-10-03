@@ -25,7 +25,7 @@ def get_dog_houses():
     return jsonify(dog_houses_data)
 
 # Example route to create a new dog house
-@app.route('/api/dog_houses', methods=['POST'])
+@app.route('/dog_houses', methods=['POST'])
 def create_dog_house():
     form = DogHouseForm(request.form)
     if form.validate():
@@ -37,7 +37,7 @@ def create_dog_house():
         return jsonify({'error': 'Invalid data'})
 
 # Example route to get a specific dog house by ID
-@app.route('/api/dog_houses/<int:dog_house_id>', methods=['GET'])
+@app.route('/dog_houses/<int:dog_house_id>', methods=['GET'])
 def get_dog_house(dog_house_id):
     dog_house = DogHouse.query.get(dog_house_id)
     if dog_house:
