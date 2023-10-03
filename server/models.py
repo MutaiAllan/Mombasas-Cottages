@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.orm import validate
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, validators
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -8,7 +7,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -36,7 +35,7 @@ class User(db.Model):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
 
-class DogHouse(db.Model):
+class DogHouse(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -46,7 +45,16 @@ class DogHouse(db.Model):
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='dog_house', lazy=True)
 
-class Review(db.Model):
+    def serialize(self):
+            return {
+                'id': self.id,
+                'name': self.name,
+                'location': self.location,
+                'description': self.description,
+                'reviews': [review.serialize() for review in self.reviews]
+            }
+
+class Review(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
@@ -58,6 +66,16 @@ class Review(db.Model):
     
     # Define many-to-one relationship with dog houses
     dog_house_id = db.Column(db.Integer, db.ForeignKey('dog_house.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'rating': self.rating,
+            'content': self.content,
+            'timestamp': self.timestamp,
+            'user_id': self.user_id,
+            'dog_house_id': self.dog_house_id
+        }
 
 class UserForm(FlaskForm):
     username = StringField('Username', [validators.Length(min=4, max=80), validators.DataRequired()])
@@ -72,6 +90,3 @@ class DogHouseForm(FlaskForm):
 class ReviewForm(FlaskForm):
     rating = IntegerField('Rating', [validators.NumberRange(min=1, max=5), validators.DataRequired()])
     content = TextAreaField('Content', [validators.Length(max=1000)])
-
-
-
