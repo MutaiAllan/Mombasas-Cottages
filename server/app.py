@@ -14,7 +14,7 @@ def get_dog_houses():
     dog_houses_data = [dog_house.serialize() for dog_house in dog_houses]
     return jsonify(dog_houses_data)
 
-# Example route to create a new dog house
+# Route to create a new dog house
 @app.route('/api/dog_houses', methods=['POST'])
 def create_dog_house():
     data = request.get_json()  # Parse JSON data from the request
