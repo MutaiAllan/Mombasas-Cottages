@@ -17,14 +17,23 @@ def get_dog_houses():
 # Example route to create a new dog house
 @app.route('/api/dog_houses', methods=['POST'])
 def create_dog_house():
-    form = DogHouseForm(request.form)
-    if form.validate():
-        new_dog_house = DogHouse(name=form.name.data, location=form.location.data, description=form.description.data)
-        db.session.add(new_dog_house)
-        db.session.commit()
-        return jsonify({'message': 'Dog house created successfully'})
+    data = request.get_json()  # Parse JSON data from the request
+    if data:
+        # Extract data from the JSON object
+        name = data.get('name')
+        location = data.get('location')
+        description = data.get('description')
+
+        if name and location:
+            new_dog_house = DogHouse(name=name, location=location, description=description)
+            db.session.add(new_dog_house)
+            db.session.commit()
+            return jsonify({'message': 'Dog house created successfully'})
+        else:
+            return jsonify({'error': 'Name and location are required fields'})
     else:
-        return jsonify({'error': 'Invalid data'})
+        return jsonify({'error': 'Invalid JSON data'})
+
 
 # Example route to get a specific dog house by ID
 @app.route('/api/dog_houses/<int:dog_house_id>', methods=['GET'])

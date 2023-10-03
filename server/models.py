@@ -42,7 +42,7 @@ class DogHouse(db.Model, SerializerMixin):
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
-    image = db.Column(db.String)
+    # image = db.Column(db.String)
     
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='dog_house', lazy=True)
