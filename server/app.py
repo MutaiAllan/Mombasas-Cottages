@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
-from models import DogHouse, DogHouseForm, UserForm, User
+from models import DogHouse, User
 from config import app, db, api
 
 # Example route to get a list of dog houses
@@ -49,13 +49,13 @@ def get_dog_house(dog_house_id):
 # Route for signing up
 @app.route('/api/signup', methods=['POST'])
 def signup():
-    #json_data = request.get_json()
-    form = UserForm(request.form)
-    if form.validate():
+    data = request.get_json()
+    # form = UserForm(request.form)
+    if data:
         new_user = User(
-            username=form.username.data,
-            email=form.email.data,
-            password_hash=form.password.data
+            username= data.get('username'),
+            email=data.get('email'),
+            password_hash=data.get('password')
         )
         db.session.add(new_user)
         db.session.commit()
