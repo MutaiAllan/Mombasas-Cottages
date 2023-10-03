@@ -32,11 +32,11 @@ function App() {
             {user ? (
               <Routes>
                 <Route path="/" element={
-            <NavBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm} 
-            setUser={setUser}     
-          />} />
+                <NavBar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm} 
+                  setUser={setUser}     
+                />} />
                 <Route path="/api/dog_houses/:id" element={<DogHouseDetails />} />
                 <Route path="/api/dog_houses" element={<DogHouseList />} />
               </Routes>
@@ -44,11 +44,11 @@ function App() {
               <Routes>
                 {/* <Route path="/" element={<Home />} /> */}
                 <Route path="/" element={
-            <NavBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm} 
-            setUser={setUser}     
-          />} />
+                  <NavBar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm} 
+                  setUser={setUser}     
+                />} />
                 <Route path="/api/dog_houses" element={<DogHouseList />} />
                 <Route path="/api/signup" element={<SignUp setUser={setUser} />} />
                 <Route path="/api/login" element={<LogIn setUser={setUser} />} />
