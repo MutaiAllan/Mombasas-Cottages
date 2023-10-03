@@ -51,11 +51,15 @@ def get_dog_house(dog_house_id):
 def signup():
     data = request.get_json()
     # form = UserForm(request.form)
+
     if data:
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
         new_user = User(
-            username= data.get('username'),
-            email=data.get('email'),
-            password_hash=data.get('password')
+            username= username,
+            email=email,
+            password_hash=password
         )
         db.session.add(new_user)
         db.session.commit()
