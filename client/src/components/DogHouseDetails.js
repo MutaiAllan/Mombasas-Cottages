@@ -7,7 +7,7 @@ function DogHouseDetails() {
 
     useEffect(() => {
         // Fetch the details of the specific doghouse by ID from the API
-        fetch(`http://127.0.0.1:5555/dog_houses/${id}`)
+        fetch(`/dog_houses/${id}`)
             .then((response) => response.json())
             .then((data) => setDogHouse(data))
             .catch((error) => console.error("Error fetching data:", error));
