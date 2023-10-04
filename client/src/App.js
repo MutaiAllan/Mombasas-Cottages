@@ -27,38 +27,38 @@ function App() {
   return (
       <div className="App">
 
-                <NavBar
-                  searchTerm={searchTerm}
-                  setSearchTerm={setSearchTerm} 
-                  setUser={setUser}     
-                />
-        
-        <Router>
-          <main>
-            {user ? (
-              <Routes>
-                {/* <Route path="/api/dog_houses" element={<Home />} /> */}
-                <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-                <Route path="/dog_houses" element={<DogHouseList />} />
-              </Routes>
-            ): (
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-                <Route path="/dog_houses" element={<DogHouseList />} />
-                <Route path="/api/signup" element={<SignUp setUser={setUser} />} />
-                <Route path="/api/login" element={<LogIn setUser={setUser} />} />
-              </Routes>
-            )}
-            
-          </main>
+          <Router>
+
+            <NavBar
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm} 
+                setUser={setUser}     
+                  />
+
+            <main>
+              {user ? (
+                <Routes>
+                  {/* <Route path="/api/dog_houses" element={<Home />} /> */}
+                  <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
+                  <Route path="/dog_houses" element={<DogHouseList />} />
+                </Routes>
+              ): (
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
+                  <Route path="/dog_houses" element={<DogHouseList />} />
+                  <Route path="/api/signup" element={<SignUp setUser={setUser} />} />
+                  <Route path="/api/login" element={<LogIn setUser={setUser} />} />
+                </Routes>
+              )}
+              
+            </main>
+
           </Router>
 
-          <Footer />
+        <Footer />
 
-        
       </div>
-      
   );
 }
 
