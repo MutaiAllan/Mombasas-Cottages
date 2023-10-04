@@ -14,6 +14,7 @@ function LogIn({ setUser }) {
       body: JSON.stringify({ email, password }),
     }).then((r) => {
       if (r.ok) {
+        console.log(r)
         r.json().then((user) => setUser(user));
       }
     });

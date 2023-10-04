@@ -6,9 +6,10 @@ function DogHouseList() {
 
     useEffect(() => {
         // Fetch the list of doghouses from the provided API endpoint
-        fetch("http://127.0.0.1:5555/dog_houses")
+        fetch("/dog_houses")
             .then((response) => response.json())
-            .then((data) => setDogHouses(data))
+            .then((data) => console.log(data))
+
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
 
