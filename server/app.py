@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
-from models import DogHouse, User
+from models import DogHouse, User, Review
 from config import app, db, api
 
 # Route to get a list of dog houses
@@ -44,7 +44,6 @@ def get_dog_house(dog_house_id):
     else:
         return jsonify({'error': 'Dog house not found'})
 
-# Add routes 
 
 # Route for signing up
 @app.route('/api/signup', methods=['POST'])
@@ -99,6 +98,82 @@ def logout():
     # Clear the user_id session variable to log the user out
     session.pop('user_id', None)
     return jsonify({'message': 'Logged out successfully'}), 200
+
+
+# Route to create a new review
+@app.route('/api/reviews', methods=['POST'])
+def create_review():
+    data = request.get_json()
+    if data:
+        user_id = session.get('user_id')
+        dog_house_id = data.get('dog_house_id')
+        rating = data.get('rating')
+        content = data.get('content')
+
+        if user_id and dog_house_id and rating:
+            review = Review(
+                user_id=user_id,
+                dog_house_id=dog_house_id,
+                rating=rating,
+                content=content
+            )
+            db.session.add(review)
+            db.session.commit()
+            return jsonify({'message': 'Review created successfully'})
+        else:
+            return jsonify({'error': 'User ID, Dog House ID, and Rating are required fields'})
+    else:
+        return jsonify({'error': 'Invalid JSON data'})
+
+# Route to get a specific review by ID
+@app.route('/api/reviews/<int:review_id>', methods=['GET'])
+def get_review(review_id):
+    review = db.session.get(Review, review_id)
+    if review:
+        return jsonify(review.serialize())
+    else:
+        return jsonify({'error': 'Review not found'})
+
+# Route to update an existing review by ID
+@app.route('/api/reviews/<int:review_id>', methods=['PUT'])
+def update_review(review_id):
+    data = request.get_json()
+    if data:
+        review = Review.query.get(review_id)
+        if review:
+            review.rating = data.get('rating', review.rating)
+            review.content = data.get('content', review.content)
+            db.session.commit()
+            return jsonify({'message': 'Review updated successfully'})
+        else:
+            return jsonify({'error': 'Review not found'})
+    else:
+        return jsonify({'error': 'Invalid JSON data'})
+
+# Route to delete a review by ID
+@app.route('/api/reviews/<int:review_id>', methods=['DELETE'])
+def delete_review(review_id):
+    review = Review.query.get(review_id)
+    if review:
+        db.session.delete(review)
+        db.session.commit()
+        return jsonify({'message': 'Review deleted successfully'})
+    else:
+        return jsonify({'error': 'Review not found'})
+
+# Route to get all reviews for a specific dog house by its ID
+@app.route('/api/dog_houses/<int:dog_house_id>/reviews', methods=['GET'])
+def get_reviews_for_dog_house(dog_house_id):
+    dog_house = db.session.get(DogHouse, dog_house_id)
+    
+    if dog_house:
+        reviews = db.session.query(Review).filter_by(dog_house_id=dog_house_id).all()
+        reviews_data = [review.serialize() for review in reviews]
+        db.session.close()  
+        return jsonify(reviews_data)
+    else:
+        db.session.close()  
+        return jsonify({'error': 'Dog house not found'})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5555)
