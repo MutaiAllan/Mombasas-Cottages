@@ -1,0 +1,17 @@
+/* Footer.css */
+
+.footer {
+    background-color: #092b29;
+    color: white;
+    padding: 20px 0;
+  }
+  
+  .footer-section {
+    margin-bottom: 20px;
+  }
+  
+  .social-media-links img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
