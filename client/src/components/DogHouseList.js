@@ -8,7 +8,7 @@ function DogHouseList() {
         // Fetch the list of doghouses from the provided API endpoint
         fetch("/dog_houses")
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => setDogHouses(data))
 
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
