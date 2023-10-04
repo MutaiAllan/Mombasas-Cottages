@@ -19,7 +19,7 @@ function DogHouseList() {
         <ul>
             {dogHouses.map((dogHouse) => (
             <li key={dogHouse.id}>
-                <Link to={`/doghouse/${dogHouse.id}`}>{dogHouse.name}</Link>
+                <Link to={`/dog_houses/${dogHouse.id}`}>{dogHouse.name}</Link>
             </li>
             ))}
         </ul>

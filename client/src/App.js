@@ -44,7 +44,8 @@ function App() {
             ): (
               <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/dog_houses" element={<DogHouseList />} /> */}
+                <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
+                <Route path="/dog_houses" element={<DogHouseList />} />
                 <Route path="/api/signup" element={<SignUp setUser={setUser} />} />
                 <Route path="/api/login" element={<LogIn setUser={setUser} />} />
               </Routes>
