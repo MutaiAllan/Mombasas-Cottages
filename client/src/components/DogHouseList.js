@@ -14,14 +14,14 @@ function DogHouseList() {
 
     return (
         <div>
-        <h2>Dog Houses</h2>
-        <ul>
-            {dogHouses.map((dogHouse) => (
-            <li key={dogHouse.id}>
-                <Link to={`/doghouse/${dogHouse.id}`}>{dogHouse.name}</Link>
-            </li>
-            ))}
-        </ul>
+            <h2>Dog Houses</h2>
+            <ul>
+                {dogHouses.map((dogHouse) => (
+                <li key={dogHouse.id}>
+                    <Link to={`/doghouse/${dogHouse.id}`}>{dogHouse.name}</Link>
+                </li>
+                ))}
+            </ul>
         </div>
     );
 }

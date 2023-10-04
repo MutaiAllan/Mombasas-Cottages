@@ -35,6 +35,38 @@ def create_dog_house():
         return jsonify({'error': 'Invalid JSON data'})
 
 
+# Route to update a dog house by its ID
+@app.route('/api/dog_houses/<int:dog_house_id>', methods=['PATCH'])
+def update_dog_house(dog_house_id):
+    data = request.get_json()  
+    if data:
+        # Check if the dog house with the given ID exists
+        dog_house = db.session.get(DogHouse, dog_house_id)
+        if dog_house:
+            # Extract data from the JSON object
+            name = data.get('name')
+            location = data.get('location')
+            description = data.get('description')
+            image = data.get('image')
+
+            # Update the dog house attributes if they are provided in the JSON data
+            if name is not None:
+                dog_house.name = name
+            if location is not None:
+                dog_house.location = location
+            if description is not None:
+                dog_house.description = description
+            if image is not None:
+                dog_house.image = image
+
+            db.session.commit()
+            return jsonify({'message': 'Dog house updated successfully'})
+        else:
+            return jsonify({'error': 'Dog house with the provided ID not found'})
+    else:
+        return jsonify({'error': 'Invalid JSON data'})
+
+
 # Route to get a specific dog house by ID
 @app.route('/dog_houses/<int:dog_house_id>', methods=['GET'])
 def get_dog_house(dog_house_id):
