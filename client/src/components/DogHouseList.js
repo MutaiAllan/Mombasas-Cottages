@@ -8,7 +8,7 @@ function DogHouseList() {
         // Fetch the list of doghouses from the provided API endpoint
         fetch("/dog_houses")
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => setDogHouses(data))
 
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
@@ -19,7 +19,7 @@ function DogHouseList() {
         <ul>
             {dogHouses.map((dogHouse) => (
             <li key={dogHouse.id}>
-                <Link to={`/doghouse/${dogHouse.id}`}>{dogHouse.name}</Link>
+                <Link to={`/dog_houses/${dogHouse.id}`}>{dogHouse.name}</Link>
             </li>
             ))}
         </ul>
