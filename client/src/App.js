@@ -9,6 +9,7 @@ import LogIn from "./components/LogIn";
 import DogHouseList from "./components/DogHouseList";
 import DogHouseDetails from "./components/DogHouseDetails";
 import Home from "./components/Home";
+import Footer from"./components/Footer";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,6 +52,8 @@ function App() {
             
           </main>
           </Router>
+
+          <Footer />
 
         
       </div>
