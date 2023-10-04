@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect} from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,7 +11,6 @@ import DogHouseDetails from "./components/DogHouseDetails";
 import Home from "./components/Home";
 
 function App() {
-
   const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState(null);
 
@@ -24,7 +24,6 @@ function App() {
   }, []);
 
   return (
-    
       <div className="App">
         
         <Router>
@@ -63,4 +62,5 @@ function App() {
       
   );
 }
+
 export default App;

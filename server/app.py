@@ -38,7 +38,7 @@ def create_dog_house():
 # Route to get a specific dog house by ID
 @app.route('/dog_houses/<int:dog_house_id>', methods=['GET'])
 def get_dog_house(dog_house_id):
-    dog_house = DogHouse.query.get(dog_house_id)
+    dog_house = db.session.get(DogHouse, dog_house_id)
     if dog_house:
         return jsonify(dog_house.serialize())
     else:
