@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import DogHouseDetails from "./DogHouseDetails";
 
-function LogIn({ setUser }) {
+function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/api/login", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +24,11 @@ function LogIn({ setUser }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {user ? (
+        <DogHouseDetails />
+      ) : (
+        <div>
+        <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <label htmlFor="email">Email</label>
         <input
@@ -43,6 +49,12 @@ function LogIn({ setUser }) {
         /><br></br>
         <button type="submit">Login</button>
       </form>
+      
+
+      <Link to={`/signUp`}>Don't have an account? Register</Link>
+      </div>
+      )}
+      
     </div>
   );
 }

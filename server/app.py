@@ -15,7 +15,7 @@ def get_dog_houses():
     return jsonify(dog_houses_data)
 
 # Route to create a new dog house
-@app.route('/api/dog_houses', methods=['POST'])
+@app.route('/dog_houses', methods=['POST'])
 def create_dog_house():
     data = request.get_json()  # Parse JSON data from the request
     if data:
@@ -78,7 +78,7 @@ def get_dog_house(dog_house_id):
 
 
 # Route for signing up
-@app.route('/api/signup', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
     # form = UserForm(request.form)
@@ -96,31 +96,31 @@ def signup():
         db.session.commit()
         return jsonify({'message': 'User created successfully'})
     else:
-        return jsonify({'error': 'Invalid data'})
+        return jsonify({'error': 'Invalid data'}), 401
     
 #Route for Logging in
-@app.route('/api/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
     if not data:
-        return jsonify({'error': 'Invalid JSON data'})
+        return jsonify({'error': 'Invalid JSON data'}), 404
 
     email = data.get('email')
     password = data.get('password')
 
     if not email or not password:
-        return jsonify({'error': 'Invalid credentials'})
+        return jsonify({'error': 'Invalid credentials'}), 404
 
     user = User.query.filter(User.email == email).first()
 
     if user is None or not user.authenticate(password):
-        return jsonify({'error': 'Invalid credentials'})
+        return jsonify({'error': 'Invalid credentials'}), 404
 
     session['user_id'] = user.id
-    return jsonify({'message': 'Logged in successfully!'})
+    return jsonify({'message': 'Logged in successfully!'}), 200
     
 # Check session for auto-login
-@app.route('/api/check_session')
+@app.route('/check_session')
 def check_session():
     user = User.query.filter(User.id == session.get('user_id')).first()
     if user:
@@ -129,7 +129,7 @@ def check_session():
         return '', 204
     
 # Clearing the session after logging out
-@app.route('/api/logout', methods=['DELETE'])
+@app.route('/logout', methods=['DELETE'])
 def logout():
     # Clear the user_id session variable to log the user out
     session.pop('user_id', None)
@@ -137,7 +137,7 @@ def logout():
 
 
 # Route to create a new review
-@app.route('/api/reviews', methods=['POST'])
+@app.route('/reviews', methods=['POST'])
 def create_review():
     data = request.get_json()
     if data:
@@ -162,7 +162,7 @@ def create_review():
         return jsonify({'error': 'Invalid JSON data'})
 
 # Route to get a specific review by ID
-@app.route('/api/reviews/<int:review_id>', methods=['GET'])
+@app.route('/reviews/<int:review_id>', methods=['GET'])
 def get_review(review_id):
     review = db.session.get(Review, review_id)
     if review:
@@ -171,7 +171,7 @@ def get_review(review_id):
         return jsonify({'error': 'Review not found'})
 
 # Route to update an existing review by ID
-@app.route('/api/reviews/<int:review_id>', methods=['PUT'])
+@app.route('/reviews/<int:review_id>', methods=['PUT'])
 def update_review(review_id):
     data = request.get_json()
     if data:
@@ -187,7 +187,7 @@ def update_review(review_id):
         return jsonify({'error': 'Invalid JSON data'})
 
 # Route to delete a review by ID
-@app.route('/api/reviews/<int:review_id>', methods=['DELETE'])
+@app.route('/reviews/<int:review_id>', methods=['DELETE'])
 def delete_review(review_id):
     review = Review.query.get(review_id)
     if review:
@@ -198,7 +198,7 @@ def delete_review(review_id):
         return jsonify({'error': 'Review not found'})
 
 # Route to get all reviews for a specific dog house by its ID
-@app.route('/api/dog_houses/<int:dog_house_id>/reviews', methods=['GET'])
+@app.route('/dog_houses/<int:dog_house_id>/reviews', methods=['GET'])
 def get_reviews_for_dog_house(dog_house_id):
     dog_house = db.session.get(DogHouse, dog_house_id)
     
