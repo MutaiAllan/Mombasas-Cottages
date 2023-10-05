@@ -9,20 +9,26 @@ function DogHouseList() {
         fetch("/dog_houses")
             .then((response) => response.json())
             .then((data) => setDogHouses(data))
-
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
 
     return (
         <div>
-        <h2>Dog Houses</h2>
-        <ul>
-            {dogHouses.map((dogHouse) => (
-            <li key={dogHouse.id}>
-                <Link to={`/dog_houses/${dogHouse.id}`}>{dogHouse.name}</Link>
-            </li>
-            ))}
-        </ul>
+            <h2>Dog Houses</h2>
+                <ul>
+                    {dogHouses.map((dogHouse) => (
+                    <li key={dogHouse.id}>
+                        <Link to={`/dog_houses/${dogHouse.id}`}>
+                            <div>
+                                <h3>{dogHouse.name}</h3>
+                                <img src={dogHouse.image} alt={dogHouse.name} />
+                                <p>Location: {dogHouse.location}</p>
+                                <p>Description: {dogHouse.description}</p>
+                            </div>
+                        </Link>
+                    </li>
+                    ))}
+                </ul>
         </div>
     );
 }

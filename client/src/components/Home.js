@@ -22,8 +22,12 @@ function Home() {
             <h2>Dog Houses</h2>
             <ul>
                 {dogHouses.map((dogHouse) => (
-                <li key={dogHouse.id}>
-                    <Link to={`/api/login`}>{dogHouse.name}</Link>
+                <li key={dogHouse.id} >
+                    <img src={dogHouse.image} alt={dogHouse.name} />
+                    
+                    <p>Name: <Link to={`/login`}>{dogHouse.name}</Link></p>
+                    <p>Location: {dogHouse.location}</p>
+                    
                 </li>
                 ))}
             </ul>

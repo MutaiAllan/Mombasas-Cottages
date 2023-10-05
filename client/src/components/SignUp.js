@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SignUp({ setUser }) {
 
@@ -9,7 +10,7 @@ function SignUp({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/api/signup", {
+        fetch("/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,6 +70,8 @@ function SignUp({ setUser }) {
             /><br></br>
             <button type="submit">Sign Up</button>
           </form>
+
+          <Link to={`/login`}>Already have an account? Login</Link>
         </div>
       );
 
