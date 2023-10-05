@@ -52,7 +52,7 @@ function LogIn({ user, setUser }) {
             <button type="submit">Login</button>
           </form>
 
-          <Link to={`/signUp`}>Don't have an account? Register</Link>
+          <Link to={`/signup`}>Don't have an account? Register</Link>
         </div>
       )}
     </div>

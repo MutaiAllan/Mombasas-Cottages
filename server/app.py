@@ -126,7 +126,7 @@ def check_session():
     if user:
         return jsonify(user.to_dict())
     else:
-        return '', 204
+        return jsonify({'error': 'Invalid credentials'}), 204
     
 # Clearing the session after logging out
 @app.route('/logout', methods=['DELETE'])

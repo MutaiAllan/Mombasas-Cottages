@@ -39,12 +39,13 @@ function App() {
             <Routes>
               {/* <Route path="/api/dog_houses" element={<Home />} /> */}
               <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-              <Route path="/dog_houses" element={<DogHouseList />} />
+              <Route path="/" element={<DogHouseList />} />
               <Route path="/login" element={<LogIn setUser={setUser} />} />
+              <Route path="/signup" element={<SignUp setUser={setUser} />} />
             </Routes>
           ) : (
             <Routes>
-              <Route path="/dog_houses" element={<Home />} />
+              <Route path="/" element={<Home />} />
               {/* <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
                 <Route path="/dog_houses" element={<DogHouseList />} /> */}
               <Route path="/signup" element={<SignUp setUser={setUser} />} />
