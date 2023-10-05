@@ -23,10 +23,10 @@ def create_dog_house():
         name = data.get('name')
         location = data.get('location')
         description = data.get('description')
-        image = data.get()
+        image = data.get('image')
 
         if name and location:
-            new_dog_house = DogHouse(name=name, location=location, description=description)
+            new_dog_house = DogHouse(name=name, location=location, description=description, image=image)
             db.session.add(new_dog_house)
             db.session.commit()
             return jsonify({'message': 'Dog house created successfully'})
