@@ -41,7 +41,7 @@ function App() {
         console.error("Error fetching data:", error);
       });
 
-  })
+  }, [])
     
 
   return (
