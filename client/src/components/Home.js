@@ -19,7 +19,6 @@ function Home() {
     return (
         <div>
             <h1>Welcome to DogHouse 254</h1>
-            <h2>Dog Houses</h2>
             <ul>
                 {dogHouses.map((dogHouse) => (
                 <li key={dogHouse.id} >
