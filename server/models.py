@@ -53,6 +53,7 @@ class DogHouse(db.Model, SerializerMixin):
                 'name': self.name,
                 'location': self.location,
                 'description': self.description,
+                'image': self.image,
                 'reviews': [review.serialize() for review in self.reviews]
             }
 

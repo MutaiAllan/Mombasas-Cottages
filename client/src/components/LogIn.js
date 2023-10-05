@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DogHouseDetails from "./DogHouseDetails";
+import DogHouseList from "./DogHouseList";
 
 function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  // const handleLogInClick = () => {
+  //   navigate("/dog_houses");
+  // };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,6 +24,7 @@ function LogIn({ user, setUser }) {
       if (r.ok) {
         console.log(r);
         r.json().then((user) => setUser(user));
+        navigate("/dog_houses")
       }
     });
   }
@@ -25,7 +32,7 @@ function LogIn({ user, setUser }) {
   return (
     <div>
       {user ? (
-        <DogHouseDetails />
+        <DogHouseList />
       ) : (
         <div>
           <form onSubmit={handleSubmit}>
@@ -60,3 +67,5 @@ function LogIn({ user, setUser }) {
 }
 
 export default LogIn;
+
+//  onClick={handleLogInClick}
