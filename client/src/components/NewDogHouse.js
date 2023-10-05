@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function NewDoghouse() {
+function NewDogHouse() {
 
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
@@ -74,7 +74,6 @@ function NewDoghouse() {
 
         </div>
       );
-
 }
 
-export default NewDoghouse;
+export default NewDogHouse;

@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NewDoghouse from "./NewDogHouse";
+import { useNavigate } from "react-router-dom";
 
 function DogHouseList() {
     const [dogHouses, setDogHouses] = useState([]);
+    const navigate = useNavigate();
+
+    const handleNewDogHouse = () => {
+        navigate("/new_dog_house");
+      };
 
     useEffect(() => {
         // Fetch the list of doghouses from the provided API endpoint
@@ -12,9 +19,11 @@ function DogHouseList() {
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
 
+        
     return (
         <div>
             <h2>Dog Houses</h2>
+             <button onClick={handleNewDogHouse}>New Dog House</button>
                 <ul>
                     {dogHouses.map((dogHouse) => (
                     <li key={dogHouse.id}>
