@@ -23,6 +23,7 @@ def create_dog_house():
         name = data.get('name')
         location = data.get('location')
         description = data.get('description')
+        image = data.get()
 
         if name and location:
             new_dog_house = DogHouse(name=name, location=location, description=description)
@@ -126,7 +127,7 @@ def check_session():
     if user:
         return jsonify(user.to_dict())
     else:
-        return '', 204
+        return jsonify({}), 204
     
 # Clearing the session after logging out
 @app.route('/logout', methods=['DELETE'])
