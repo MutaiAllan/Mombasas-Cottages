@@ -8,9 +8,9 @@ function LogIn({ user, setUser }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogInClick = () => {
-    navigate("/dog_houses");
-  };
+  // const handleLogInClick = () => {
+  //   navigate("/dog_houses");
+  // };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -56,7 +56,7 @@ function LogIn({ user, setUser }) {
               onChange={(e) => setPassword(e.target.value)}
             />
             <br></br>
-            <button type="submit" onClick={handleLogInClick}>Login</button>
+            <button type="submit">Login</button>
           </form>
 
           <Link to={`/signup`}>Don't have an account? Register</Link>
@@ -68,3 +68,4 @@ function LogIn({ user, setUser }) {
 
 export default LogIn;
 
+//  onClick={handleLogInClick}
