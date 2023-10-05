@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavBar from "./components/NavBar";
-import SignUp from "./components/SignUp";
-import LogIn from "./components/LogIn";
-import DogHouseList from "./components/DogHouseList";
-import DogHouseDetails from "./components/DogHouseDetails";
-import Home from "./components/Home";
-import Footer from "./components/Footer";
-import NewDoghouse from "./components/NewDogHouse";
+import NavBar from "./NavBar";
+import SignUp from "./SignUp";
+import LogIn from "./LogIn";
+import DogHouseList from "./DogHouseList";
+import DogHouseDetails from "./DogHouseDetails";
+import Home from "./Home";
+import Footer from "./Footer";
+import NewDoghouse from "./NewDogHouse";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,12 +17,32 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("/check_session").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+    fetch("/check_session")
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error("Network response was not ok");
+    }
+
+    // Check if the response has a body
+        const contentLength = r.headers.get("Content-Length");
+        if (!contentLength || contentLength === "0") {
+      // Response is empty, handle accordingly
+        return null;
+        }
+
+        return r.json();
+        })
+      .then((user) => {
+        if (user !== null) {
+          setUser(user);
+        }
+        })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+  }, [])
+    
 
   return (
     <div className="App">
@@ -44,7 +64,7 @@ function App() {
             </Routes>
           ) : (
             <Routes>
-              <Route path="/dog_houses" element={<Home />} />
+              <Route path="/" element={<Home />} />
               {/* <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
                 <Route path="/dog_houses" element={<DogHouseList />} /> */}
               <Route path="/signup" element={<SignUp setUser={setUser} />} />

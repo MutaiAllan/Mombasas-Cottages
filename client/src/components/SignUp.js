@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp({ setUser }) {
 
@@ -7,6 +7,11 @@ function SignUp({ setUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const navigate = useNavigate();
+
+    // const handleSignUpClick = () => {
+    //   ;
+    // };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,8 +28,9 @@ function SignUp({ setUser }) {
           }),
         }).then((r) => {
           if (r.ok) {
-            r.json().then((user) => setUser(user));
-          }
+            r.json().then((user) => setUser(user))
+              navigate("/login")};
+        
         });
     }
 
@@ -68,7 +74,7 @@ function SignUp({ setUser }) {
               onChange={(e) => setPasswordConfirmation(e.target.value)}
               autoComplete="current-password"
             /><br></br>
-            <button type="submit">Sign Up</button>
+            <button type="submit" >Sign Up</button>
           </form>
 
           <Link to={`/login`}>Already have an account? Login</Link>
@@ -78,3 +84,5 @@ function SignUp({ setUser }) {
 }
 
 export default SignUp
+
+// onClick={handleSignUpClick}

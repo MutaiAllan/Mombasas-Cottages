@@ -28,8 +28,8 @@ def seed_database():
 
         db.create_all()
 
-        User.query.delete()
         Review.query.delete()
+        User.query.delete()
         DogHouse.query.delete()
         
         for _ in range(5):
@@ -42,7 +42,8 @@ def seed_database():
             dog_house = DogHouse(
                 name=dog_house_name, 
                 location=fake.address(), 
-                description=description
+                description=description,
+                image="https://shorturl.at/iFGS6"
                 )
             
             db.session.add(dog_house)
