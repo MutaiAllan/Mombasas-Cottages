@@ -11,7 +11,7 @@ function NewDoghouse() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/api/dog_houses", {
+        fetch("/dog_houses", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

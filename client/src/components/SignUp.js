@@ -10,7 +10,7 @@ function SignUp({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/api/signup", {
+        fetch("/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function SignUp({ setUser }) {
             <button type="submit">Sign Up</button>
           </form>
 
-          <Link to={`/api/login`}>Already have an account? Login</Link>
+          <Link to={`/login`}>Already have an account? Login</Link>
         </div>
       );
 

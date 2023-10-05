@@ -16,7 +16,7 @@ function LogIn({ user, setUser }) {
       body: JSON.stringify({ email, password }),
     }).then((r) => {
       if (r.ok) {
-        console.log(r)
+        console.log(r);
         r.json().then((user) => setUser(user));
       }
     });
@@ -28,33 +28,33 @@ function LogIn({ user, setUser }) {
         <DogHouseDetails />
       ) : (
         <div>
-        <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          autoComplete="off"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /><br></br>
-        
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /><br></br>
-        <button type="submit">Login</button>
-      </form>
-      
+          <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <br></br>
 
-      <Link to={`/signUp`}>Don't have an account? Register</Link>
-      </div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <br></br>
+            <button type="submit">Login</button>
+          </form>
+
+          <Link to={`/signUp`}>Don't have an account? Register</Link>
+        </div>
       )}
-      
     </div>
   );
 }

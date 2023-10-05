@@ -36,7 +36,7 @@ def create_dog_house():
 
 
 # Route to update a dog house by its ID
-@app.route('/api/dog_houses/<int:dog_house_id>', methods=['PATCH'])
+@app.route('/dog_houses/<int:dog_house_id>', methods=['PATCH'])
 def update_dog_house(dog_house_id):
     data = request.get_json()  
     if data:
