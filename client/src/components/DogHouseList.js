@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import NewDoghouse from "./NewDogHouse";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDogHouseContext } from "./DogHouseContext";
+
 
 function DogHouseList() {
-    const [dogHouses, setDogHouses] = useState([]);
-    const navigate = useNavigate();
+  const { dogHouses } = useDogHouseContext();
+  const navigate = useNavigate();
 
-    const handleNewDogHouse = () => {
-        navigate("/new_dog_house");
-      };
+  const handleNewDogHouse = () => {
+    navigate("/new_dog_house");
+  };
 
-    useEffect(() => {
-        // Fetch the list of doghouses from the provided API endpoint
-        fetch("/dog_houses")
-            .then((response) => response.json())
-            .then((data) => setDogHouses(data))
-            .catch((error) => console.error("Error fetching data: ", error));
-        }, []);
-
+  let cardStyle = {
+    width: "18rem",
+    height: "28rem",
+  };
           
     return (
         <div className="container mt-5">
@@ -49,5 +46,6 @@ function DogHouseList() {
                   </div>
                 );
               }
+
 
 export default DogHouseList;
