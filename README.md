@@ -32,6 +32,10 @@ npm start --prefix client
 ```
 
 ## Contributors
+1. https://github.com/WinterJackson
+2. https://github.com/whiplade
+3. https://github.com/JoyOlago
+4. https://github.com/MutaiAllan
 
 ## Licensing
 
