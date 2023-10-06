@@ -20,32 +20,15 @@ function DogHouseList() {
             .catch((error) => console.error("Error fetching data: ", error));
         }, []);
 
-        let cardStyle={
-            width:"18rem",
-            height:"28rem",
-          }
-        
-          const containerStyle={
-            fontFamily: "Franklin-Gothic-Medium",
-            height:"250px",
-            textAlign: "center",
-            paddingTop:"20px"
-          }
-        
-          const customAssetContainer={
-            position:"relative",
-            width: "80%",
-            height: "auto"
-        }
           
     return (
-        <div className="container mt-5" style={containerStyle}>
+        <div className="container mt-5">
             <h2>Dog Houses</h2>
-             <button onClick={handleNewDogHouse} className="btn btn-primary mb-3">New Dog House</button>
+             <button onClick={handleNewDogHouse} className="btn btn-info">AddNew Dog House</button>
                 <div className="row">
                     {dogHouses.map((dogHouse) => (
                     <div key={dogHouse.id} className="col-md-4 mb-4">
-                            <div className="card" style={cardStyle}>
+                            <div className="card">
                                 <img
                                 src={dogHouse.image}
                                 alt={dogHouse.name}
@@ -55,7 +38,7 @@ function DogHouseList() {
                                 <h3 className="card-title">{dogHouse.name}</h3>
                                 <p className="card-text">Location: {dogHouse.location}</p>
                                 <p className="card-text">Description: {dogHouse.description}</p>
-                                <Link to={`/dog_houses/${dogHouse.id}`} className="btn btn-primary">
+                                <Link to={`/dog_houses/${dogHouse.id}`} className="btn btn-info">
                                   View Details
                               </Link>
                             </div>
