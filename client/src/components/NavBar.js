@@ -67,7 +67,7 @@ function NavBar({ searchTerm, setSearchTerm }) {
       {user ? (
         <div className="user-actions">
           <div className="username">{user.username}</div>
-          <button onClick={handleLogoutClick}>Logout</button>
+          <button onClick={handleLogoutClick} className="btn btn-danger">Logout</button>
         </div>
       ) : (
         <div className="auth-actions">
