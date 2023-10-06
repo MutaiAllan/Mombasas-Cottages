@@ -30,21 +30,32 @@ function Home() {
       }, []);
 
     return (
-        <div>
-            <h1>Welcome to DogHouse 254</h1>
-            <ul>
+        <div className="container mt-5" background-color="">
+            <h1>Welcome to DogHouse 254!</h1>
+            <div className="row">
                 {dogHouses.map((dogHouse) => (
-                <li key={dogHouse.id} >
-                    <img src={dogHouse.image} alt={dogHouse.name} />
-                    
-                    <p>Name: <Link to={`/login`}>{dogHouse.name}</Link></p>
-                    <p>Location: {dogHouse.location}</p>
-                    
-                </li>
+                  <div key={dogHouse.id} className="col-md-4 mb-4">
+                    <div className="card">
+                      <img
+                        src={dogHouse.image}
+                        alt={dogHouse.name}
+                        className="card-img-top"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{dogHouse.name}</h5>
+                        <p className="card-text">Location: {dogHouse.location}</p>
+                        {/* Add more information here as needed */}
+                        <Link to={`/login`} className="btn btn-info">
+                          View Details
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-            </ul>
-        </div>
-    );
-}
+              </div>
+            </div>
+          );
+        }
+        
 
 export default Home;

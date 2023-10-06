@@ -71,8 +71,8 @@ function NavBar({ searchTerm, setSearchTerm }) {
         </div>
       ) : (
         <div className="auth-actions">
-          <button onClick={handleSignUpClick}>Sign Up</button>
-          <button onClick={handleLogInClick}>Log In</button>
+          <button onClick={handleSignUpClick} className="btn btn-danger">Sign Up</button>
+          <button onClick={handleLogInClick} className="btn btn-info">Log In</button>
         </div>
       )}
     </div>

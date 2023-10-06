@@ -36,32 +36,42 @@ function LogIn({ user, setUser }) {
         <NavBar />
         // <DogHouseList />
       ) : (
-        <div>
-          <form onSubmit={handleSubmit}>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+           <form onSubmit={handleSubmit} className="mt-4">
             <h1>Login</h1>
-            <label htmlFor="email">Email</label>
+            <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email address
+            </label>
             <input
-              type="text"
+              type="email"
               id="email"
               autoComplete="off"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="name@example.com"
             />
-            <br></br>
-
-            <label htmlFor="password">Password</label>
+            </div>
+            <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password
+            </label>
             <input
               type="password"
               id="password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
             />
-            <br></br>
-            <button type="submit">Login</button>
+            </div>
+
+            <button type="submit" className="btn btn-info">Login</button>
           </form>
 
-          <Link to={`/signup`}>Don't have an account? Register</Link>
+          <p className="mt-3">
+              Don't have an account?{" "}
+              <Link to="/signup">Register</Link>
+            </p>
+            </div>
         </div>
       )}
     </div>
