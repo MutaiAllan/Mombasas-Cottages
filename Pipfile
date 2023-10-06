@@ -17,6 +17,7 @@ psycopg2 = "*"
 flask-wtf = "*"
 email-validator = "*"
 faker = "*"
+gunicorn = "*"
 
 [dev-packages]
 
