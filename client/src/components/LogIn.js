@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import DogHouseDetails from "./DogHouseDetails";
+// import DogHouseDetails from "./DogHouseDetails";
 import DogHouseList from "./DogHouseList";
 import NavBar from "./NavBar";
 
