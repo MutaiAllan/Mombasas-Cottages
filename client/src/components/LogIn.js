@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import DogHouseDetails from "./DogHouseDetails";
 import DogHouseList from "./DogHouseList";
+import NavBar from "./NavBar";
 
 function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
@@ -32,7 +33,8 @@ function LogIn({ user, setUser }) {
   return (
     <div>
       {user ? (
-        <DogHouseList />
+        <NavBar />
+        // <DogHouseList />
       ) : (
         <div>
           <form onSubmit={handleSubmit}>

@@ -8,13 +8,26 @@ function Home() {
 
     const [dogHouses, setDogHouses] = useState([]);
 
+    // useEffect(() => {
+    //     // Fetch the list of doghouses from the provided API endpoint
+    //     fetch("/dog_houses")
+    //         .then((response) => response.json())
+    //         .then((data) => setDogHouses(data))
+    //         .catch((error) => console.error("Error fetching data: ", error));
+    //     }, []);
+
     useEffect(() => {
-        // Fetch the list of doghouses from the provided API endpoint
-        fetch("/dog_houses")
-            .then((response) => response.json())
-            .then((data) => setDogHouses(data))
-            .catch((error) => console.error("Error fetching data: ", error));
-        }, []);
+        async function fetchDogHouses() {
+          try {
+            const res = await fetch("/dog_houses");
+            const data = await res.json();
+            setDogHouses(data);
+          } catch (error) {
+            console.log("Error fetching products:", error);
+          }
+        }
+        fetchDogHouses();
+      }, []);
 
     return (
         <div>

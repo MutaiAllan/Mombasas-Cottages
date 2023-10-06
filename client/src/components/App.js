@@ -9,7 +9,7 @@ import DogHouseList from "./DogHouseList";
 import DogHouseDetails from "./DogHouseDetails";
 import Home from "./Home";
 import Footer from "./Footer";
-import NewDoghouse from "./NewDogHouse";
+import NewDogHouse from "./NewDogHouse";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,7 +51,6 @@ function App() {
       <NavBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        setUser={setUser}
       />
 
         <main>
@@ -59,6 +58,7 @@ function App() {
             <Routes>
               {/* <Route path="/api/dog_houses" element={<Home />} /> */}
               <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
+              <Route path="/new_dog_house" element={<NewDogHouse />} />
               <Route path="/dog_houses" element={<DogHouseList />} />
               <Route path="/login" element={<LogIn setUser={setUser} />} />
             </Routes>
