@@ -10,6 +10,8 @@ import DogHouseDetails from "./DogHouseDetails";
 import Home from "./Home";
 import Footer from "./Footer";
 import NewDogHouse from "./NewDogHouse";
+import { DogHouseProvider } from "./DogHouseContext"; 
+
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,6 +47,8 @@ function App() {
     
 
   return (
+    <DogHouseProvider>
+
     <div className="App">
       {/* <NewDoghouse /> */}
     <Router>
@@ -76,6 +80,7 @@ function App() {
 
       <Footer />
     </div>
+    </DogHouseProvider>
   );
 }
 
