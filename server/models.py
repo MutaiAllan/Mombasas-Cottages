@@ -3,6 +3,7 @@ from sqlalchemy_serializer import SerializerMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, validators
 from sqlalchemy.ext.hybrid import hybrid_property
+from datetime import datetime
 #Added config.py to prevent circular imports
 from config import db, bcrypt
 
@@ -62,7 +63,7 @@ class Review(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     content = db.Column(db.Text, nullable=True)
-    timestamp = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     
     # Define many-to-one relationship with users
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
