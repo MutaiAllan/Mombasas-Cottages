@@ -10,6 +10,7 @@ import DogHouseDetails from "./DogHouseDetails";
 import Home from "./Home";
 import Footer from "./Footer";
 import NewDogHouse from "./NewDogHouse";
+// import NewReview from "./NewReview";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,6 +58,7 @@ function App() {
           {user ? (
             <Routes>
               {/* <Route path="/api/dog_houses" element={<Home />} /> */}
+              {/* <Route path="/reviews" element={<NewReview />} /> */}
               <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
               <Route path="/new_dog_house" element={<NewDogHouse />} />
               <Route path="/dog_houses" element={<DogHouseList />} />

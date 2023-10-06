@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import NewReview from "./NewReview";
 
 function DogHouseDetails() {
     const { id } = useParams();
     const [dogHouse, setDogHouse] = useState(null);
+    // const navigate = Navigate();
+
+    // const handleNewReview = () => {
+    //     navigate("/reviews")
+    // }
 
     useEffect(() => {
         // Fetch the details of the specific doghouse by ID from the API
@@ -33,8 +39,12 @@ function DogHouseDetails() {
                 </li>
                 ))}
             </ul>
+
+            <NewReview />
         </div>
     );
 }
 
 export default DogHouseDetails;
+
+// onClick={handleNewReview}

@@ -149,10 +149,10 @@ def create_review():
 
         if user_id and dog_house_id and rating:
             review = Review(
-                user_id=user_id,
-                dog_house_id=dog_house_id,
                 rating=rating,
-                content=content
+                content=content,
+                user_id=user_id,
+                dog_house_id=dog_house_id
             )
             db.session.add(review)
             db.session.commit()
