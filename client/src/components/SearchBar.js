@@ -14,14 +14,14 @@ function SearchBar({ searchTerm, setSearchTerm }) {
               onChange={(e) => setSearchTerm(e.target.value)}
               />
           </div>
-          <div className="col-auto">
+          {/* <div className="col-auto">
           <img
             src="https://cdn-icons-png.flaticon.com/128/200/200941.png"
             alt="Search Icon"
             className="img-fluid"
             style={{ width: "30px", height: "30px", marginTop: "10px" }}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
