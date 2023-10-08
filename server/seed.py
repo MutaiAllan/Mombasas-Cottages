@@ -23,10 +23,10 @@ good_reviews = [
     "Highly recommend! Will definitely come back."
 ]
 dog_house_images = [
-    "https://shorturl.at/hsH02",
-    "https://shorturl.at/hsyD7",
-    "https://shorturl.at/zVY02",
-    "https://shorturl.at/ceny7",
+    "https://rb.gy/bkuiq",
+    "https://rb.gy/bkuiq",
+    "https://t.ly/-g-UU",
+    "https://t.ly/eewCZ",
     "https://t.ly/39lZL",
     "https://t.ly/Nh10x",
     "https://t.ly/6dnHJ",
