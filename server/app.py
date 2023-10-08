@@ -219,4 +219,4 @@ def get_reviews_for_dog_house(dog_house_id):
         return jsonify({'error': 'Dog house not found'})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5555)
+    app.run(host='0.0.0.0', port=8000) 
