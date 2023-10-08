@@ -32,4 +32,4 @@ SQLAlchemy-serializer==1.4.1
 typing_extensions>=4.7.0
 Werkzeug>=2.0.0
 WTForms==3.0.1
-zipp==3.17.0
+zipp>=3.6.0
