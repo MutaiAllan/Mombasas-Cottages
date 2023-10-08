@@ -13,19 +13,9 @@ function SearchBar() {
               id="search"
               className="form-control"
               placeholder="Type a dog house to search..."
-              value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               />
           </div>
-          {/* <div className="col-auto">
-          <input
-            type="text"
-            id="search"
-            placeholder="Type a dog house to search..."
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          </div>
-
       </div>
     </div>
   );
