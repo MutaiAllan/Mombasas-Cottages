@@ -1,1 +1,1 @@
-web: server.app:app
+web: server.config:app
