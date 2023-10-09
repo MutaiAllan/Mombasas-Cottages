@@ -38,7 +38,7 @@ class User(db.Model, SerializerMixin):
         if not value:
             raise ValueError("Password is required")
         if len(value) < 20:
-            raise ValueError("Passsword must be at least 6 characters long.")
+            raise ValueError("Password must be at least 6 characters long.")
         return value
 
     #Hashing the password
