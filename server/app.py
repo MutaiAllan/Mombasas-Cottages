@@ -7,10 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 from models import DogHouse, User, Review
 from config import app, db, api
 
-@app.route('/')
-@app.route('/<int:id>')
-def index(id=0):
-    return render_template("index.html")
+
+@app.route('/', methods=['GET'])
+def root():
+    return jsonify({'message': 'Welcome to the Dog House API'})
+
 
 # Route to get a list of dog houses
 @app.route('/dog_houses', methods=['GET'])
