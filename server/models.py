@@ -38,7 +38,7 @@ class User(db.Model, SerializerMixin):
         if not value:
             raise ValueError("Password is required")
         if len(value) < 20:
-            raise ValueError("Passsword must be at least 6 characters long.")
+            raise ValueError("Password must be at least 6 characters long.")
         return value
 
     #Hashing the password
@@ -102,13 +102,13 @@ class Review(db.Model, SerializerMixin):
             'dog_house_id': self.dog_house_id
         }
     
-    @validates('rating')
-    def validate_rating(self, key, value):
-        if not value:
-            raise ValueError("Rating is required")
-        if not (1 <= value <= 5):
-            raise ValueError("Rating must be between 1 and 5")
-        return value
+    # @validates('rating')
+    # def validate_rating(self, key, value):
+    #     if not value:
+    #         raise ValueError("Rating is required")
+    #     if not (1 <= value <= 5):
+    #         raise ValueError("Rating must be between 1 and 5")
+    #     return value
     @validates('content')
     def validate_content(self, key, value):
         if not value:
