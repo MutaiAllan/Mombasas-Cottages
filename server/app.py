@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request, session
+from flask import Flask, jsonify, make_response, request, session, render_template
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from flask_bcrypt import Bcrypt
@@ -6,6 +6,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 from models import DogHouse, User, Review
 from config import app, db, api
+
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
 
 # Route to get a list of dog houses
 @app.route('/dog_houses', methods=['GET'])
