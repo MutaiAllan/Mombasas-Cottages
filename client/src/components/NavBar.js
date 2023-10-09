@@ -55,7 +55,7 @@ function NavBar({ searchTerm, setSearchTerm }) {
         .catch((error) => {
         console.error("Error fetching data:", error);
             });
-    }, []);
+    }, [navigate]);
 
   return (
     <div className="navbar">
