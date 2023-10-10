@@ -5,15 +5,19 @@
   padding: 10px 20px;
   background-color: #c6ac8f;
   color: white;
+  width: 100%;
+  flex-wrap: nowrap;
 }
+
 
 .doghouse {
   font-size: 1.5rem;
+  padding: 0.5em;
 }
 
 .searchbar {
   flex-grow: 1;
-  margin: 0 20px;
+  padding-bottom: 2rem;
 }
 
 .searchbar input {
@@ -23,15 +27,17 @@
 }
 
 .auth-actions {
-  display: flex;
+  display: grid;
+  justify-content: space-between;
   gap: 10px;
-  margin-left: 20px;
+  margin-right: 0.625em;
 }
 
 .user-actions {
-  display: flex;
-  align-items: center;
+  display: grid;
+  justify-content: space-between;
   gap: 10px;
+  margin-right: 0.625em;
 }
 
 .username {

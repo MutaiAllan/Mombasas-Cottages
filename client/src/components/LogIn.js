@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 // import DogHouseDetails from "./DogHouseDetails";
 import DogHouseList from "./DogHouseList";
 import NavBar from "./NavBar";
+import './Login.css';
+
 
 function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");

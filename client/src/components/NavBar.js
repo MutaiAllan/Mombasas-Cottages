@@ -59,22 +59,22 @@ function NavBar({ searchTerm, setSearchTerm }) {
 
   return (
     <div className="navbar">
-      <div className="doghouse">DogHouse 254</div>
-      <div className="searchbar">
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      </div>
+      <div className="nav_bar doghouse">DogHouse 254</div>
+          <div className="nav_bar searchbar">
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          </div>
 
-      {user ? (
-        <div className="user-actions">
-          <div className="username">{user.username}</div>
-          <button onClick={handleLogoutClick} className="btn btn-danger">Logout</button>
-        </div>
-      ) : (
-        <div className="auth-actions">
-          <button onClick={handleSignUpClick} className="btn btn-danger">Sign Up</button>
-          <button onClick={handleLogInClick} className="btn btn-info">Log In</button>
-        </div>
-      )}
+          {user ? (
+            <div className="nav_bar user-actions">
+              <div className="username">{user.username}</div>
+              <button onClick={handleLogoutClick} className="btn btn-danger">Logout</button>
+            </div>
+          ) : (
+            <div className="nav_bar auth-actions">
+              <button onClick={handleSignUpClick} className="btn btn-danger">Sign Up</button>
+              <button onClick={handleLogInClick} className="btn btn-info">Log In</button>
+            </div>
+          )}
     </div>
   );
 }
