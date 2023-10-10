@@ -1,0 +1,43 @@
+.col-md-8 {
+    width: 100%; 
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+.row_details {
+    display: grid;
+}
+
+.col-md-9 {
+    width: 100%; 
+    margin-top: 1rem;
+}
+
+.container_details{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.container_details h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.container_details h3 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.list-group {
+    margin-bottom: 3rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+}
+
+.list-group-item {
+    display: grid;
+    gap: 1rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}

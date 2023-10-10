@@ -31,6 +31,7 @@ function NewDogHouse() {
 
     return (
       <div className="container mt-5">
+      <div className="col-md-6">
       <form onSubmit={handleSubmit}>
         <h1>Add new dog house</h1>
         <div className="mb-3">
@@ -93,6 +94,7 @@ function NewDogHouse() {
           Submit
         </button>
       </form>
+      </div>
     </div>
   );
 }

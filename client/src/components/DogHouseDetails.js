@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import './DogHouseDetails.css';
+import { Spinner } from "react-bootstrap"
+
 
 function DogHouseDetails() {
     const { id } = useParams();
@@ -23,13 +26,13 @@ function DogHouseDetails() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container_details">
             <h2>{dogHouse.name}</h2>
-            <div className="row">
-                <div className="col-md-6">
+            <div className="row_details">
+                <div className="col-md-8">
                     <img src={dogHouse.image} alt={dogHouse.name} className="img-fluid" />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-9">
                     <div className="card">
                         <div className="card-body">
                             <h5 className="card-title">Location</h5>
