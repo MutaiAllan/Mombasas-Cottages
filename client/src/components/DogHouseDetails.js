@@ -3,9 +3,15 @@ import { useParams } from "react-router-dom";
 import './DogHouseDetails.css';
 import { Spinner } from "react-bootstrap"
 
+
 function DogHouseDetails() {
     const { id } = useParams();
     const [dogHouse, setDogHouse] = useState(null);
+    // const navigate = Navigate();
+
+    // const handleNewReview = () => {
+    //     navigate("/reviews")
+    // }
 
     useEffect(() => {
         // Fetch the details of the specific doghouse by ID from the API
@@ -57,3 +63,5 @@ function DogHouseDetails() {
 
 
 export default DogHouseDetails;
+
+// onClick={handleNewReview}

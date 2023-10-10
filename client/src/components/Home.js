@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect} from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import DogHouseList from "./DogHouseList";
-import DogHouseDetails from "./DogHouseDetails";
+import { Link } from "react-router-dom";
 
 function Home() {
 

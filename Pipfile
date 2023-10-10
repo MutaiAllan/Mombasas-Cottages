@@ -18,6 +18,8 @@ flask-wtf = "*"
 email-validator = "*"
 faker = "*"
 gunicorn = "*"
+python-dotenv = "*"
+honcho = "*"
 
 [dev-packages]
 

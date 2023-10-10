@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request, session
+from flask import Flask, jsonify, make_response, request, session, render_template
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from flask_bcrypt import Bcrypt
@@ -8,9 +8,9 @@ from models import DogHouse, User, Review
 from config import app, db, api
 
 
-@app.route('/', methods=['GET'])
-def root():
-    return jsonify({'message': 'Welcome to the Dog House API'})
+# @app.route('/', methods=['GET'])
+# def root():
+#     return jsonify({'message': 'Welcome to the Dog House API'})
 
 
 # Route to get a list of dog houses
@@ -155,10 +155,10 @@ def create_review():
 
         if user_id and dog_house_id and rating:
             review = Review(
-                user_id=user_id,
-                dog_house_id=dog_house_id,
                 rating=rating,
-                content=content
+                content=content,
+                user_id=user_id,
+                dog_house_id=dog_house_id
             )
             db.session.add(review)
             db.session.commit()

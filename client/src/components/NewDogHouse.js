@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 function NewDogHouse() {
 
@@ -7,7 +6,7 @@ function NewDogHouse() {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-    const [dogHouse, setDogHouse] = useState([])
+    const [setDogHouse] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault();

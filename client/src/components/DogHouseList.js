@@ -12,11 +12,6 @@ function DogHouseList() {
   const handleNewDogHouse = () => {
     navigate("/new_dog_house");
   };
-
-  let cardStyle = {
-    width: "18rem",
-    height: "28rem",
-  };
           
     return (
         <div className="container mt-5">
