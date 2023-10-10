@@ -11,7 +11,9 @@ from config import app, db, api
 # @app.route('/', methods=['GET'])
 # def root():
 #     return jsonify({'message': 'Welcome to the Dog House API'})
-
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
 
 # Route to get a list of dog houses
 @app.route('/dog_houses', methods=['GET'])

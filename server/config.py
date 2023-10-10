@@ -32,8 +32,4 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 #
 
-@app.errorhandler(404)
-def not_found(e):
-    return render_template("index.html")
-
 api = Api(app)
