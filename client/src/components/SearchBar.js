@@ -1,8 +1,8 @@
 import React from "react";
-import { useDogHouseContext } from "./DogHouseContext";
+import { useCottageContext } from "./CottageContext";
 
 function SearchBar() {
-  const { setSearchTerm } = useDogHouseContext();  
+  const { setSearchTerm } = useCottageContext();  
 
     return (
       <div className="container mt-3">

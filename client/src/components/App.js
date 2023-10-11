@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
-import DogHouseList from "./DogHouseList";
-import DogHouseDetails from "./DogHouseDetails";
+import CottageList from "./CottageList";
+import CottageDetails from "./CottageDetails";
 import Home from "./Home";
 import Footer from "./Footer";
-import NewDogHouse from "./NewDogHouse";
-import { DogHouseProvider } from "./DogHouseContext"; 
+import NewCottage from "./NewCottage";
+import { CottageProvider } from "./CottageContext"; 
 
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
     
 
   return (
-    <DogHouseProvider>
+    <CottageProvider>
 
     <div className="App">
     <Router>
@@ -59,20 +59,20 @@ function App() {
         <main>
           {user ? (
             <Routes>
-              {/* <Route path="/api/dog_houses" element={<Home />} /> */}
+              {/* <Route path="/api/cottages" element={<Home />} /> */}
               {/* <Route path="/reviews" element={<NewReview />} /> */}
-              <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-              <Route path="/new_dog_house" element={<NewDogHouse />} />
-              <Route path="/dog_houses" element={<DogHouseList />} />
+              <Route path="/cottages/:id" element={<CottageDetails />} />
+              <Route path="/new_cottage" element={<NewCottage />} />
+              <Route path="/cottages" element={<CottageList />} />
               <Route path="/signup" element={<SignUp setUser={setUser} />} />
               <Route path="/login" element={<LogIn setUser={setUser} />} />
             </Routes>
           ) : (
             <Routes>
               {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-              <Route path="/new_dog_house" element={<NewDogHouse />} />
-              <Route path="/" element={<DogHouseList />} />
+              <Route path="/cottages/:id" element={<CottageDetails />} />
+              <Route path="/new_dog_house" element={<NewCottage />} />
+              <Route path="/" element={<CottageList />} />
               <Route path="/signup" element={<SignUp setUser={setUser} />} />
             </Routes>
           )}
@@ -81,7 +81,7 @@ function App() {
 
       <Footer />
     </div>
-    </DogHouseProvider>
+    </CottageProvider>
   );
 }
 

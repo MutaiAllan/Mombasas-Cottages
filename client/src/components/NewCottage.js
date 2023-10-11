@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function NewDogHouse() {
+function NewCottage() {
 
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-    const [setDogHouse] = useState([])
+    const [setCottage] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,7 +23,7 @@ function NewDogHouse() {
           }),
         }).then((r) => {
           if (r.ok) {
-            r.json().then((dogHouse) => setDogHouse(dogHouse));
+            r.json().then((cottage) => setCottage(cottage));
           }
         });
     }
@@ -33,7 +33,7 @@ function NewDogHouse() {
       <div className="container mt-5">
       <div className="col-md-6">
       <form onSubmit={handleSubmit}>
-        <h1>Add new dog house</h1>
+        <h1>Add new Cottage</h1>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -99,4 +99,4 @@ function NewDogHouse() {
   );
 }
 
-export default NewDogHouse;
+export default NewCottage;

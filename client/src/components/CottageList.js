@@ -2,35 +2,35 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDogHouseContext } from "./DogHouseContext";
+import { useCottageContext } from "./CottageContext";
 
 
-function DogHouseList() {
-  const { dogHouses } = useDogHouseContext();
+function CottageList() {
+  const { cottages } = useCottageContext();
   const navigate = useNavigate();
 
-  const handleNewDogHouse = () => {
-    navigate("/new_dog_house");
+  const handleNewCottage = () => {
+    navigate("/new_cottage");
   };
           
     return (
         <div className="container mt-5">
             <h2>Welcome to Mombasa cottages! Most affordable and quality cottages.</h2>
-             <button onClick={handleNewDogHouse} className="btn btn-info">AddNew Dog House</button>
+             <button onClick={handleNewCottage} className="btn btn-info">AddNew Cottage</button>
                 <div className="row">
-                    {dogHouses.map((dogHouse) => (
-                    <div key={dogHouse.id} className="col-md-4 mb-4">
+                    {cottages.map((cottage) => (
+                    <div key={cottage.id} className="col-md-4 mb-4">
                             <div className="card">
                                 <img
-                                src={dogHouse.image}
-                                alt={dogHouse.name}
+                                src={cottage.image}
+                                alt={cottage.name}
                                 className="card-img-top img-fluid"
                               />
                               <div className="card-body">
-                                <h3 className="card-title">{dogHouse.name}</h3>
-                                <p className="card-text">Location: {dogHouse.location}</p>
-                                <p className="card-text">Description: {dogHouse.description}</p>
-                                <Link to={`/dog_houses/${dogHouse.id}`} className="btn btn-info">
+                                <h3 className="card-title">{cottage.name}</h3>
+                                <p className="card-text">Location: {cottage.location}</p>
+                                <p className="card-text">Description: {cottage.description}</p>
+                                <Link to={`/cottages/${cottage.id}`} className="btn btn-info">
                                   View Details
                               </Link>
                             </div>
@@ -43,4 +43,4 @@ function DogHouseList() {
               }
 
 
-export default DogHouseList;
+export default CottageList;
