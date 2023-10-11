@@ -22,27 +22,39 @@ good_reviews = [
     "Friendly staff, and they provide treats!",
     "Highly recommend! Will definitely come back."
 ]
+dog_house_images = [
+    "https://rb.gy/bkuiq",
+    "https://rb.gy/bkuiq",
+    "https://t.ly/-g-UU",
+    "https://t.ly/eewCZ",
+    "https://t.ly/39lZL",
+    "https://t.ly/Nh10x",
+    "https://t.ly/6dnHJ",
+    "https://t.ly/-g-UU",
+    "https://t.ly/eewCZ",
+    "https://rb.gy/bkuiq"
+]
 
 def seed_database():
     with app.app_context():
 
         db.create_all()
 
-        User.query.delete()
         Review.query.delete()
+        User.query.delete()
         DogHouse.query.delete()
         
         for _ in range(5):
             user = User(username=fake.user_name(), email=fake.email(), password_hash=fake.password())
             db.session.add(user)
 
-        for _ in range(10):
-            dog_house_name = random.choice(dog_house_names)
+        for i in range(10):
             description = random.choice(descriptions)
             dog_house = DogHouse(
-                name=dog_house_name, 
+                name=dog_house_names[i], 
                 location=fake.address(), 
-                description=description
+                description=description,
+                image=dog_house_images[i]
                 )
             
             db.session.add(dog_house)
@@ -60,11 +72,8 @@ def seed_database():
             review = Review(rating=rating, content=review_content, user=random_user, dog_house=random_dog_house)
             db.session.add(review)
 
-        mutai = User(username='Mutai', email='allankiprop@gmail.com', password_hash='123456')
-        db.session.add(mutai)
-
         db.session.commit()
-        print("Database seeded successfully!")
+        
 
 if __name__ == '__main__':
     seed_database()

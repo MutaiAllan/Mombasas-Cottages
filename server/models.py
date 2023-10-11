@@ -3,8 +3,10 @@ from sqlalchemy_serializer import SerializerMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, validators
 from sqlalchemy.ext.hybrid import hybrid_property
+from datetime import datetime
 #Added config.py to prevent circular imports
 from config import db, bcrypt
+from sqlalchemy.orm import validates
 
 #db = SQLAlchemy()
 
@@ -18,6 +20,26 @@ class User(db.Model, SerializerMixin):
     
     # Define one-to-many relationship with reviews
     reviews = db.relationship('Review', backref='user', lazy=True)
+
+    @validates('username')
+    def validate_username(self, key, value):
+        if not value:
+            raise ValueError("username is required")
+        return value
+        
+    @validates('email')
+    def validate_email(self, key, value):
+        if not value:
+            raise ValueError("Email is required")
+        return value
+        
+    @validates('password')
+    def validate_password(self, key, value):
+        if not value:
+            raise ValueError("Password is required")
+        if len(value) < 20:
+            raise ValueError("Password must be at least 6 characters long.")
+        return value
 
     #Hashing the password
     @hybrid_property #Marks `password_hash` as hybrid; custom getter and setter methods
@@ -53,6 +75,7 @@ class DogHouse(db.Model, SerializerMixin):
                 'name': self.name,
                 'location': self.location,
                 'description': self.description,
+                'image': self.image,
                 'reviews': [review.serialize() for review in self.reviews]
             }
 
@@ -61,7 +84,7 @@ class Review(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     content = db.Column(db.Text, nullable=True)
-    timestamp = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     
     # Define many-to-one relationship with users
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -78,17 +101,29 @@ class Review(db.Model, SerializerMixin):
             'user_id': self.user_id,
             'dog_house_id': self.dog_house_id
         }
+    
+    # @validates('rating')
+    # def validate_rating(self, key, value):
+    #     if not value:
+    #         raise ValueError("Rating is required")
+    #     if not (1 <= value <= 5):
+    #         raise ValueError("Rating must be between 1 and 5")
+    #     return value
+    @validates('content')
+    def validate_content(self, key, value):
+        if not value:
+            raise ValueError("Content cannot be empty!")
 
-# class UserForm(FlaskForm):
-#     username = StringField('Username', [validators.Length(min=4, max=80), validators.DataRequired()])
-#     email = StringField('Email', [validators.Email(), validators.DataRequired()])
-#     password = StringField('Password', [validators.Length(min=6), validators.DataRequired()])
+class UserForm(FlaskForm):
+    username = StringField('Username', [validators.Length(min=4, max=80), validators.DataRequired()])
+    email = StringField('Email', [validators.Email(), validators.DataRequired()])
+    password = StringField('Password', [validators.Length(min=6), validators.DataRequired()])
 
-# class DogHouseForm(FlaskForm):
-#     name = StringField('Name', [validators.Length(min=2, max=100), validators.DataRequired()])
-#     location = StringField('Location', [validators.Length(min=1, max=200), validators.DataRequired()])
-#     description = TextAreaField('Description', [validators.Length(max=200)])
+class DogHouseForm(FlaskForm):
+    name = StringField('Name', [validators.Length(min=2, max=100), validators.DataRequired()])
+    location = StringField('Location', [validators.Length(min=1, max=200), validators.DataRequired()])
+    description = TextAreaField('Description', [validators.Length(max=200)])
 
-# class ReviewForm(FlaskForm):
-#     rating = IntegerField('Rating', [validators.NumberRange(min=1, max=5), validators.DataRequired()])
-#     content = TextAreaField('Content', [validators.Length(max=1000)])
+class ReviewForm(FlaskForm):
+    rating = IntegerField('Rating', [validators.NumberRange(min=1, max=5), validators.DataRequired()])
+    content = TextAreaField('Content', [validators.Length(max=1000)])
