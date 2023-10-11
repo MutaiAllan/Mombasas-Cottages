@@ -12,7 +12,7 @@ function SearchBar() {
               type="text"
               id="search"
               className="form-control"
-              placeholder="Type a dog house to search..."
+              placeholder="Type a cottage to search..."
               onChange={(e) => setSearchTerm(e.target.value)}
               />
           </div>

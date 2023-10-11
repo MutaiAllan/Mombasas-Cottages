@@ -50,7 +50,6 @@ function App() {
     <DogHouseProvider>
 
     <div className="App">
-      {/* <NewDoghouse /> */}
     <Router>
       <NavBar
         searchTerm={searchTerm}
@@ -65,15 +64,16 @@ function App() {
               <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
               <Route path="/new_dog_house" element={<NewDogHouse />} />
               <Route path="/dog_houses" element={<DogHouseList />} />
+              <Route path="/signup" element={<SignUp setUser={setUser} />} />
               <Route path="/login" element={<LogIn setUser={setUser} />} />
             </Routes>
           ) : (
             <Routes>
-              <Route path="/" element={<Home />} />
-              {/* <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
-                <Route path="/dog_houses" element={<DogHouseList />} /> */}
+              {/* <Route path="/" element={<Home />} /> */}
+              <Route path="/dog_houses/:id" element={<DogHouseDetails />} />
+              <Route path="/new_dog_house" element={<NewDogHouse />} />
+              <Route path="/" element={<DogHouseList />} />
               <Route path="/signup" element={<SignUp setUser={setUser} />} />
-              <Route path="/login" element={<LogIn setUser={setUser} />} />
             </Routes>
           )}
         </main>

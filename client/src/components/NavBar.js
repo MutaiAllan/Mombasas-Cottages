@@ -59,7 +59,7 @@ function NavBar({ searchTerm, setSearchTerm }) {
 
   return (
     <div className="navbar">
-      <div className="nav_bar doghouse">DogHouse 254</div>
+      <div className="nav_bar doghouse">Mombasa Cottages</div>
           <div className="nav_bar searchbar">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           </div>

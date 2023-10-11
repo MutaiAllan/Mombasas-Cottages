@@ -15,7 +15,7 @@ function DogHouseList() {
           
     return (
         <div className="container mt-5">
-            <h2>Dog Houses</h2>
+            <h2>Welcome to Mombasa cottages! Most affordable and quality cottages.</h2>
              <button onClick={handleNewDogHouse} className="btn btn-info">AddNew Dog House</button>
                 <div className="row">
                     {dogHouses.map((dogHouse) => (
